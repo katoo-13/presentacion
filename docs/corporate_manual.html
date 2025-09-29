@@ -1,0 +1,161 @@
+<script type="text/javascript">
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function filledCell(cell) {
+          return cell !== '' && cell != null;
+        }
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                // Convert sheet to JSON to filter blank rows
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                // Filter out blank rows (rows where all cells are empty, null, or undefined)
+                var filteredData = jsonData.filter(row => row.some(filledCell));
+
+                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
+                var headerRowIndex = filteredData.findIndex((row, index) =>
+                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                );
+                // Fallback
+                if (headerRowIndex === -1 || headerRowIndex > 25) {
+                  headerRowIndex = 0;
+                }
+
+                // Convert filtered JSON back to CSV
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+        }
+        </script><!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Presentación del Manual Corporativo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        header {
+            background-color: #003087;
+            color: white;
+            text-align: center;
+            padding: 2em;
+        }
+        header img {
+            max-width: 150px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .section {
+            background: white;
+            margin: 20px 0;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .section img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 10px 0;
+        }
+        h2 {
+            color: #003087;
+        }
+        .navigation {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .navigation button {
+            background-color: #003087;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .navigation button:hover {
+            background-color: #0055b3;
+        }
+        footer {
+            text-align: center;
+            padding: 1em;
+            background-color: #003087;
+            color: white;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="https://via.placeholder.com/150x50?text=Logo+Corporativo" alt="Logo Corporativo">
+        <h1>Manual Corporativo</h1>
+        <p>Bienvenidos a la guía oficial de nuestra empresa</p>
+    </header>
+
+    <div class="container">
+        <div class="section" id="section1">
+            <h2>1. Imagotipo</h2>
+            <p>Este manual presenta los valores, misión y visión de nuestra empresa, así como las políticas y procedimientos clave.</p>
+            <img src="https://via.placeholder.com/600x300?text=Imagen+Imagotipo" alt="Imagotipo">
+        </div>
+
+        <div class="section" id="section2">
+            <h2>2. Variantes</h2>
+            <p>Nuestra misión es innovar y ofrecer soluciones de calidad. Nuestra visión es liderar el mercado con excelencia.</p>
+            <img src="https://via.placeholder.com/600x300?text=Imagen+Variantes" alt="Variantes">
+        </div>
+
+        <div class="section" id="section3">
+            <h2>3. Mal Uso</h2>
+            <p>Reglas y procedimientos para garantizar un entorno de trabajo productivo y ético.</p>
+            <img src="https://via.placeholder.com/600x300?text=Imagen+Mal+Uso" alt="Mal Uso">
+        </div>
+
+        <div class="section" id="section4">
+            <h2>4. Justificación del Logo</h2>
+            <p>Expectativas de comportamiento para todos los empleados.</p>
+            <img src="https://via.placeholder.com/600x300?text=Imagen+Justificación+Logo" alt="Justificación del Logo">
+        </div>
+    </div>
+
+    <div class="navigation">
+        <button onclick="scrollToSection('section1')">Imagotipo</button>
+        <button onclick="scrollToSection('section2')">Variantes</button>
+        <button onclick="scrollToSection('section3')">Mal Uso</button>
+        <button onclick="scrollToSection('section4')">Justificación del Logo</button>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Empresa Ejemplo. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
