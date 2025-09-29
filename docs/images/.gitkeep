@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual Corporativo - Vera</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        header {
+            background-color: #8B0000; /* Rojo oscuro para el tema */
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        section {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        h2 {
+            color: #8B0000;
+            border-bottom: 2px solid #000;
+            padding-bottom: 10px;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 10px auto;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .nav {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .nav a {
+            margin: 0 10px;
+            color: #8B0000;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #000;
+            color: white;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+        @media (max-width: 600px) {
+            section {
+                margin: 10px;
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Manual Corporativo - Vera</h1>
+        <p>Thomas Vera - 4°E</p>
+    </header>
+
+    <nav class="nav">
+        <a href="#seccion1">Introducción</a>
+        <a href="#seccion2">Variantes</a>
+        <a href="#seccion3">Mal Uso</a>
+        <a href="#seccion4">Justificación</a>
+    </nav>
+
+    <section id="seccion1">
+        <h2>1. Introducción</h2>
+        <p>El Manual Corporativo de Vera define la identidad visual de la marca, inspirada en la fuerza y determinación de un gladiador. "No se trata de ganar, se trata de no rendirse nunca".</p>
+        <img src="images/intro.jpg" alt="Introducción al Manual Corporativo">
+    </section>
+
+    <section id="seccion2">
+        <h2>2. Variantes del Logo</h2>
+        <p>Explora las diferentes versiones del imagotipo, incluyendo variantes a color y monocromáticas para adaptabilidad en diversos medios.</p>
+        <img src="images/variantes.jpg" alt="Variantes del Logo Vera">
+    </section>
+
+    <section id="seccion3">
+        <h2>3. Mal Uso del Logo</h2>
+        <p>Evita errores comunes como distorsiones, mal contraste o usos indebidos para preservar la integridad de la marca.</p>
+        <img src="images/maluso.jpg" alt="Ejemplos de Mal Uso del Logo">
+    </section>
+
+    <section id="seccion4">
+        <h2>4. Justificación</h2>
+        <p>El diseño minimalista con rojo y negro simboliza pasión, seriedad y resiliencia, alineado con los valores de Vera.</p>
+        <img src="images/justificacion.jpg" alt="Justificación del Diseño">
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Vera Corporativo. Diseñado por Thomas Vera.</p>
+    </footer>
+</body>
+</html>
